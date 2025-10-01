@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>중간고사 결과 & 업그레이드 제안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1220;--panel:#121a2b;--muted:#8aa0c6;--text:#eaf1ff;
+  --accent:#5dd0ff;--accent2:#a688ff;--ok:#53e3a6;--warn:#ffd166;
+  --card:#0f1626;--chip:#1c2640;--line:#1e2a45;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Pretendard,system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans KR','Apple SD Gothic Neo',sans-serif}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:18px}
+.header{
+  position:sticky;top:0;background:linear-gradient(180deg,rgba(11,18,32,.95),rgba(11,18,32,.6));
+  backdrop-filter: blur(6px);z-index:9;border-bottom:1px solid var(--line)
+}
+.hbar{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:14px 18px}
+.badge{background:var(--chip);padding:6px 10px;border-radius:10px;font-size:.85rem;color:var(--muted)}
+.hero{padding:26px 18px 8px}
+.hero h1{margin:.2em 0 .2em;font-size:1.75rem;line-height:1.2}
+.hero p{color:var(--muted);margin:.2em 0 0}
+
+.grid{display:grid;gap:16px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(12,1fr)}}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card h3{margin:0 0 8px;font-size:1.05rem}
+.kpi{display:flex;gap:12px;flex-wrap:wrap}
+.kpi .box{
+  flex:1 1 140px;background:var(--card);border:1px solid var(--line);
+  padding:14px;border-radius:12px
+}
+.kpi .label{color:var(--muted);font-size:.82rem}
+.kpi .val{font-size:1.4rem;font-weight:700}
+
+.timeline{position:relative;padding-left:12px}
+.timeline:before{content:"";position:absolute;left:2px;top:0;bottom:0;width:2px;background:var(--line)}
+.ti{position:relative;margin:12px 0 12px 10px;padding-left:12px}
+.ti:before{
+  content:"";position:absolute;left:-10px;top:6px;width:10px;height:10px;border-radius:50%;
+  background:var(--accent2);box-shadow:0 0 0 3px rgba(166,136,255,.15)
+}
+.list{margin:6px 0 0;padding-left:16px;color:var(--muted)}
+.list li{margin:4px 0}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{background:var(--chip);color:var(--text);padding:6px 10px;border-radius:999px;font-size:.85rem;border:1px solid var(--line)}
+
+.price{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.price .num{font-weight:700;font-size:1.15rem}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0b1020;
+  font-weight:700;text-decoration:none;padding:10px 14px;border-radius:10px;border:0}
+.btn.hollow{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+.hr{height:1px;background:var(--line);margin:12px 0}
+
+.note{font-size:.92rem;color:var(--muted)}
+.ok{color:var(--ok)} .warn{color:var(--warn)}
+.footer{color:var(--muted);text-align:center;padding:18px}
+.card .sub{color:var(--muted);margin:6px 0 0;font-size:.92rem}
+.titleRow{display:flex;align-items:center;gap:8px}
+.titleRow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.small{font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="hbar wrap">
+    <div class="badge">중간고사 결과 & 업그레이드 제안</div>
+    <div class="small">모바일 최적화 • 링크 클릭 시 제품 페이지</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero card">
+    <div class="titleRow"><span class="dot"></span><span class="small">요약</span></div>
+    <h1>이번엔 점수로!!.</h1>
+    <p>일주일 몰빵 결과, 평균을 <b>약 78 → 93.5</b>로 올림.  
+       말이 아니라 결과로 보여드렸음.</p>
+    <div class="chips">
+      <span class="chip">수학 100</span><span class="chip">과학 100</span>
+      <span class="chip">영어 91</span><span class="chip">역사 91</span><span class="chip">국어 85.5 (전교5등)</span>
+    </div>
+  </section>
+
+  <!-- 성적 변화 -->
+  <section class="grid">
+    <div class="card" style="grid-column:span 12;">
+      <h3>성적 스냅샷</h3>
+      <div class="kpi">
+        <div class="box">
+          <div class="label">1학기 기말 평균</div>
+          <div class="val warn">~78</div>
+          <div class="sub">국91·수100·영72·역55·과72</div>
+        </div>
+        <div class="box">
+          <div class="label">2학기 중간 평균</div>
+          <div class="val ok">93.5</div>
+          <div class="sub">국85.5·수100·영91·역91·과100</div>
+        </div>
+        <div class="box">
+          <div class="label">핵심 변화</div>
+          <div class="val">+15.5p</div>
+          <div class="sub">영어 +19, 역사 +36, 과학 +28</div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="timeline">
+        <div class="ti"><b>트리거</b> — “이번에 제대로 하면 보상 있다” → 목표 설정</div>
+        <div class="ti"><b>집중 구간</b> — 손가락도다쳤으니,게임 끊고, 본문·문법·기출 압축 반복</div>
+        <div class="ti"><b>결과</b> — 과학/수학 만점, 영어·역사 급상승, 국어 상위권(5등,난이도 수능식)유지</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 왜 지금 업그레이드? -->
+  <section class="grid">
+    <div class="card" style="grid-column:span 12;">
+      <h3>왜 ‘지금’ 업그레이드가 합리적일까</h3>
+      <ul class="list">
+        <li><b>가성비 구간</b> — 7500F + 5060 조합은 전력대 성능, 프레임 안정성, 유지비에서 최적.</li>
+        <li><b>학습/업무 체감</b> — PPT·코딩·영상 편집·AI 도구까지 버벅임 줄어듦. 게임 효율뿐만 아니라 공부 효율또한↑.</li>
+        <li><b>동기 유지</b> — 성과에 대한 실질적 보상은 다음 루프의 연료.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 부품 카드 -->
+  <section class="grid">
+    <div class="card" style="grid-column:span 12;">
+      <h3>업그레이드 구성</h3>
+    </div>
+
+    <div class="card" style="grid-column:span 12;display:grid;gap:12px">
+      <!-- GPU -->
+      <div class="card" style="background:var(--card)">
+        <h3>🎮 그래픽카드 — RTX 5060 (8GB)</h3>
+        <p class="sub">1080p·1440p 게임 안정 프레임, DLSS/프레임 생성 지원.</p>
+        <div class="price">
+          <span class="num">₩458,000</span>
+          <a class="btn" href="https://naver.me/Gmt327H8" target="_blank" rel="noopener">제품 보러가기</a>
+        </div>
+      </div>
+
+      <!-- CPU -->
+      <div class="card" style="background:var(--card)">
+        <h3>🧠 CPU — Ryzen 5 7500F</h3>
+        <p class="sub">AM5 플랫폼, 단일 코어 성능 우수. 5060과 병목 거의 없음.</p>
+        <div class="price">
+          <span class="num">₩192,600</span>
+          <a class="btn" href="https://naver.me/GVEgJYMM" target="_blank" rel="noopener">제품 보러가기</a>
+        </div>
+      </div>
+
+      <!-- MB -->
+      <div class="card" style="background:var(--card)">
+        <h3>🧩 메인보드 — GIGABYTE B650M K</h3>
+        <p class="sub">차세대 CPU 호환, 필요한 기능만 담은 가성비 B650.</p>
+        <div class="price">
+          <span class="num">₩128,400</span>
+          <a class="btn" href="https://naver.me/5V8NwHFX" target="_blank" rel="noopener">제품 보러가기</a>
+        </div>
+      </div>
+
+      <!-- PSU -->
+      <div class="card" style="background:var(--card)">
+        <h3>🔌 파워 — 700W 80+ Bronze</h3>
+        <p class="sub">현재 500W → 여유·안정성 업. 7500F+5060 조합에 적정.</p>
+        <div class="price">
+          <span class="num">₩81,600</span>
+          <a class="btn" href="https://naver.me/G6Q2TKk7" target="_blank" rel="noopener">제품 보러가기</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 합계 -->
+    <div class="card" style="grid-column:span 12">
+      <h3>합계 & 비교</h3>
+      <div class="kpi">
+        <div class="box"><div class="label">부품 합계</div><div class="val">₩860,600</div></div>
+        <div class="box"><div class="label">아이폰 17 Pro</div><div class="val warn">~₩1,800,000~2,000,000</div></div>
+      </div>
+      <div class="hr"></div>
+      <p class="note">
+        아이폰 풀가격(180만~200만) 대신,  
+        성적 향상분(평균 +15.5p)에 맞춰 <b>절반 이하 비용(약 86만)</b>으로 합리 보상 가능.
+      </p>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="card">
+    <h3>마무리</h3>
+    <p>감사합니다.그리고 점수로 증명했습니다.
+       💯올백으로 당당하게 말씀드리는건 아니지만.
+       업그레이드는 제게 동기 유지 장치입니다.</p>
+  </section>
+
+  <div class="footer small">© 결과로 설득 — 공부 성과 기반한 결론</div>
+</main>
+</body>
+</html>
