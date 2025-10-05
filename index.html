@@ -3,336 +3,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>올백이 아니지만· 업그레이드 제안</title>
+<title>아빠 제발... 이번 한 번만 🙏</title>
 <style>
-/* ========= THEME ========= */
 :root{
-  --bg:#070b15;--panel:#0c1222;--text:#ecf2ff;--muted:#8ea1c9;--line:#1c2742;
-  --chip:#141e36;--acc1:#5dd0ff;--acc2:#a688ff;--ok:#53e3a6;--warn:#ffd166;
-  --glass:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.35)
+  --bg:#0b0f1c;--panel:#11182b;--text:#eaf1ff;--muted:#8aa0c6;
+  --acc1:#5dd0ff;--acc2:#a688ff;--line:#1d2743;--chip:#1a223b;
+  --ok:#53e3a6;--warn:#ffd166;
 }
-html[data-theme="light"]{
-  --bg:#f6f9ff;--panel:#ffffff;--text:#0f1730;--muted:#5c6c88;--line:#dfe6f7;--chip:#eef3ff;
-  --acc1:#2c7dff;--acc2:#8e5cff;--glass:rgba(10,20,40,.06);--shadow:0 10px 30px rgba(30,60,120,.15)
-}
-*{box-sizing:border-box} html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Noto Sans KR',sans-serif}
-a{color:inherit;text-decoration:none}
-
-/* ========= GLOBAL UI ========= */
-.container{max-width:860px;margin:0 auto;padding:18px}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:var(--muted);font-size:.9rem}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:14px;border:0;
-  background:linear-gradient(135deg,var(--acc1),var(--acc2));color:#0a0f20;font-weight:800;box-shadow:var(--shadow)}
-.btn.ghost{background:transparent;border:1px solid var(--acc1);color:var(--acc1);box-shadow:none}
-.chip{display:inline-block;background:var(--chip);border:1px solid var(--line);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:.85rem}
-
-/* ========= STICKY TOP ========= */
-.topbar{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.topbar .row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
-.topbar .actions{display:flex;gap:8px}
-.iconBtn{background:var(--glass);border:1px solid var(--line);color:var(--muted);border-radius:12px;padding:8px 10px}
-
-/* ========= FULLSCREEN SECTIONS ========= */
-.snap{height:100svh;scroll-snap-type:y mandatory;overflow-y:auto}
-.sec{scroll-snap-align:start;min-height:100svh;display:flex;align-items:center;position:relative}
-.card{
-  background:linear-gradient(180deg,var(--panel),var(--panel)) padding-box,
-             linear-gradient(135deg,rgba(93,208,255,.6),rgba(166,136,255,.6)) border-box;
-  border:1px solid transparent;border-radius:16px;padding:18px;box-shadow:var(--shadow)
-}
-h1{font-size:clamp(28px,7vw,40px);line-height:1.08;margin:.3em 0 .2em}
-h2{font-size:clamp(22px,5.5vw,28px);margin:0 0 8px}
-
-/* HERO BG (dramatic gradient waves) */
-.heroBg{position:absolute;inset:0;z-index:-1;overflow:hidden}
-.heroBg::before,.heroBg::after{
-  content:"";position:absolute;width:120vmax;height:120vmax;border-radius:50%;
-  filter:blur(60px);opacity:.22;transform:translate(-20%, -30%)
-}
-.heroBg::before{background:radial-gradient(circle at 30% 30%, var(--acc1), transparent 60%)}
-.heroBg::after{background:radial-gradient(circle at 70% 40%, var(--acc2), transparent 60%)}
-
-/* KPI RINGS */
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.kpiRing{display:flex;flex-direction:column;align-items:center;gap:6px}
-svg{width:96px;height:96px}
-.rTrack{stroke:rgba(255,255,255,.12)}
-.rProg{stroke:url(#grad);stroke-linecap:round;transition:stroke-dashoffset .8s ease}
-.kpiRing .num{font-weight:900;font-size:1.2rem}
-
-/* SWIPE CARDS */
-.swiper{display:grid;grid-auto-flow:column;grid-auto-columns:80%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
-.swiper::-webkit-scrollbar{display:none}
-.swiper .item{scroll-snap-align:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px}
-
-/* GRID */
-.grid{display:grid;gap:12px}
-@media(min-width:700px){.grid.cols2{grid-template-columns:repeat(2,1fr)}}
-
-/* LIST & PRICE */
-.list{margin:8px 0 0;padding-left:16px;color:var(--muted)} .list li{margin:6px 0}
-.price{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.price .num{font-weight:900}
-
-/* BARS */
-.bar{height:12px;background:var(--chip);border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--acc1),var(--acc2));width:0}
-
-/* BOTTOM CTA */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px}
-.sti{max-width:860px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;box-shadow:var(--shadow)}
-.small{color:var(--muted);font-size:.92rem}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(12px);transition:all .5s ease}
-.reveal.show{opacity:1;transform:none}
-
-/* GALLERY (옵션) */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.gallery img{width:100%;aspect-ratio:1/1;border-radius:10px;border:1px solid var(--line);object-fit:cover}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Noto Sans KR',sans-serif;}
+.container{max-width:880px;margin:0 auto;padding:22px;}
+.card{background:var(--panel);border:1px solid var(--line);
+border-radius:14px;padding:18px;margin-bottom:20px;}
+h1{font-size:2rem;margin:.4em 0;}
+h2{margin:0 0 .5em;font-size:1.4rem;}
+p{line-height:1.5;color:var(--muted);}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;
+background:linear-gradient(135deg,var(--acc1),var(--acc2));
+color:#0b1020;font-weight:700;text-decoration:none;}
+.chip{display:inline-block;background:var(--chip);color:var(--muted);
+padding:6px 10px;border-radius:999px;margin:3px;}
 </style>
 </head>
 <body>
+<div class="container">
 
-<!-- TOP -->
-<div class="topbar">
-  <div class="row">
-    <div class="badge">결과로 설득</div>
-    <div class="actions">
-      <button class="iconBtn" id="shareBtn">📤</button>
-      <button class="iconBtn" id="themeBtn">🌗</button>
-    </div>
+  <div class="card" style="text-align:center;">
+    <h1>🙏 아빠... 이번만 진짜 부탁이야 🙏</h1>
+    <p>웃기게 들릴 수 있지만, 이번엔 진짜 **인생 걸고 공부했다.** 고할수있을 정도로 결과도, 마음가짐도, 전부 바뀌었어.</p>
+    <p>그런 의미에서... “한 번만” 기회를 달라는 프로젝트 페이지야...😂</p>
   </div>
-</div>
 
-<!-- SNAP SCROLL WRAPPER -->
-<div class="snap">
-
-  <!-- SEC 1: HERO -->
-  <section class="sec" id="hero">
-    <div class="heroBg"></div>
-    <div class="container">
-      <div class="card">
-        <span class="badge">일주일 몰빵 → 평균 <b>93.5</b></span>
-        <h1>올백이아니지만. <u>변화</u>로 증명.<br>이젠 업그레이드를.</h1>
-        <p class="small">아이폰(≈180만) 대신 <b>핵심 PC 업그레이드(≈83만)</b>로 동기 유지 & 생산성 ↑</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-          <a class="btn" href="#scores">성적 보기</a>
-          <a class="btn ghost" href="#build">구성 요약</a>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">
-          <span class="chip">수학 100(중학교내내)</span><span class="chip">과학 100(전교에 4명)</span>
-          <span class="chip">영어 91</span><span class="chip">역사 91</span><span class="chip">국어 85.5(수능난이도)</span>
-        </div>
-      </div>
+  <div class="card">
+    <h2>🎯 공부 결과 (전교 4등대, 실화)</h2>
+    <div>
+      <span class="chip">수학 100</span>
+      <span class="chip">과학 100</span>
+      <span class="chip">영어 91</span>
+      <span class="chip">역사 91</span>
+      <span class="chip">국어 85.5 (전교 4등대)</span>
     </div>
-  </section>
-
-  <!-- SEC 2: SCORES (RINGS + SWIPE) -->
-  <section class="sec" id="scores">
-    <div class="container">
-      <h2>성적 스냅샷</h2>
-      <p class="small">1학기 기말 → 2학기 중간, <b>변화</b>로 말함.</p>
-
-      <!-- KPI RINGS -->
-      <div class="kpis reveal" id="rings">
-        <!-- 평균 이전 -->
-        <div class="kpiRing">
-          <svg viewBox="0 0 120 120">
-            <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="var(--acc1)"/><stop offset="100%" stop-color="var(--acc2)"/></linearGradient></defs>
-            <circle class="rTrack" cx="60" cy="60" r="50" fill="none" stroke-width="10"/>
-            <circle class="rProg"  cx="60" cy="60" r="50" fill="none" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="314" data-ring="78"/>
-          </svg>
-          <div class="num" data-count="78">78</div>
-          <div class="small">1학기 기말 평균</div>
-        </div>
-        <!-- 평균 이후 -->
-        <div class="kpiRing">
-          <svg viewBox="0 0 120 120">
-            <circle class="rTrack" cx="60" cy="60" r="50" fill="none" stroke-width="10"/>
-            <circle class="rProg"  cx="60" cy="60" r="50" fill="none" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="314" data-ring="93.5"/>
-          </svg>
-          <div class="num" data-count="93.5">93.5</div>
-          <div class="small">2학기 중간 평균</div>
-        </div>
-        <!-- 변화량 -->
-        <div class="kpiRing">
-          <svg viewBox="0 0 120 120">
-            <circle class="rTrack" cx="60" cy="60" r="50" fill="none" stroke-width="10"/>
-            <circle class="rProg"  cx="60" cy="60" r="50" fill="none" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="314" data-ring="15.5" data-max="20"/>
-          </svg>
-          <div class="num" data-count="15.5">+15.5</div>
-          <div class="small">핵심 증가</div>
-        </div>
-      </div>
-
-      <!-- SWIPE STORY -->
-      <div class="swiper reveal" style="margin-top:12px">
-        <div class="item">
-          <b>트리거</b>
-          <p class="small">보상 조건 제시 → 목표 명확화. 방향 잡히니 집중에 탄력이생김.</p>
-          <div class="bar"><span data-bar="90"></span></div>
-        </div>
-        <div class="item">
-          <b>집중 루틴</b>
-          <p class="small">게임 올스톱, 본문·문법·기출 압축 반복. gpt-5 를 이용하여 실패 패턴 차단.</p>
-          <div class="bar"><span data-bar="95"></span></div>
-        </div>
-        <div class="item">
-          <b>결과</b>
-          <p class="small">만점 2개 + 전과목 상승. 국어 고난도에서도 상위권!!!!.</p>
-          <div class="bar"><span data-bar="98"></span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEC 3: WHY NOW -->
-  <section class="sec" id="why">
-    <div class="container">
-      <div class="card reveal">
-        <h2>왜 ‘지금’ 업그레이드?</h2>
-        <ul class="list">
-          <li><b>가성비 구간:</b> 7500F + RTX 5060 = 전력/프레임/가격 밸런스 최적.</li>
-          <li><b>실사용 체감:</b> 과제·코딩·영상·AI툴 딜레이↓. 공부 효율 자체가 올라감.</li>
-          <li><b>비용 논리:</b> 아이폰 180만 vs 업그레이드 83만 → <u>성과 대비 합리 보상</u>.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEC 4: BUILD -->
-  <section class="sec" id="build">
-    <div class="container">
-      <h2>업그레이드 구성 (총액 <b>₩826610</b>)</h2>
-      <p class="small">클릭하면 제품 페이지 이동.</p>
-
-      <div class="grid cols2">
-        <div class="card reveal">
-          <h3>🎮 RTX 5060 (8GB)</h3>
-          <p class="small">1080p/1440p 안정 프레임 + DLSS/프레임 생성.</p>
-          <div class="price"><span class="num">₩458,000</span>
-            <a class="btn" target="_blank" rel="noopener" href="https://prod.danawa.com/info/?pcode=90887900">보기</a>
-          </div>
-        </div>
-        <div class="card reveal">
-          <h3>🧠 Ryzen 5 7500F</h3>
-          <p class="small">AM5 플랫폼·싱글 성능 우수. 5060과 병목 거의 없음.</p>
-          <div class="price"><span class="num">₩192,600</span>
-            <a class="btn" target="_blank" rel="noopener" href="https://prod.danawa.com/info/?pcode=21694499">보기</a>
-          </div>
-        </div>
-        <div class="card reveal">
-          <h3>🧩 GIGABYTE B650M K</h3>
-          <p class="small">차세대 CPU 호환, 필수 기능만 담은 B650 가성비.</p>
-          <div class="price"><span class="num">₩128,400</span>
-            <a class="btn" target="_blank" rel="noopener" href="https://prod.danawa.com/info/?pcode=20324882">보기</a>
-          </div>
-        </div>
-        <div class="card reveal">
-          <h3>🔌 파워 700W 80+ Bronze</h3>
-          <p class="small">현재 500W → 여유/안정성 업. 조합에 적정.</p>
-          <div class="price"><span class="num">₩81,600</span>
-            <a class="btn" target="_blank" rel="noopener" href="https://prod.danawa.com/info/?pcode=49642700">보기</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="card reveal" style="margin-top:12px">
-        <h3>아이폰 vs 업그레이드 (비용 비교)</h3>
-        <div class="bar" style="margin:8px 0 6px"><span data-bar="48"></span></div>
-        <div class="grid cols2">
-          <div class="card" style="background:var(--glass)">
-            <div class="small">부품 합계</div><div class="num">₩860,600</div>
-          </div>
-          <div class="card" style="background:var(--glass)">
-            <div class="small">아이폰 17 Pro</div><div class="num" style="color:var(--warn)">₩1,800,000~2,000,000</div>
-          </div>
-        </div>
-        <p class="small" style="margin-top:6px">절반 이하 비용으로 <b>성과 기반 보상</b>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEC 5: FAQ -->
-  <section class="sec" id="faq">
-    <div class="container">
-      <div class="card reveal">
-        <h2>FAQ</h2>
-        <div class="swiper">
-          <div class="item"><b>기존 부품은?</b><p class="small">SSD·RAM 재활용. 파워는 700W로 교체해 여유 확보.</p></div>
-          <div class="item"><b>왜 7500F?</b><p class="small">싱글 성능 충분 + AM5로 추후 업그레이드 쉬움.</p></div>
-          <div class="item"><b>왜 5060?</b><p class="small">전력 대비 프레임 안정, 1080p/1440p 가성비 탄탄.</p></div>
-        </div>
-      </div>
-
-      <!-- (옵션) 증빙 갤러리 -->
-      <!--
-      <div class="gallery" style="margin-top:12px">
-        <img src="assets/score.jpg"><img src="assets/note.jpg"><img src="assets/graph.jpg">
-      </div>
-      -->
-    </div>
-  </section>
-
-</div><!-- /snap -->
-
-<!-- BOTTOM CTA -->
-<div class="sticky">
-  <div class="sti">
-    <div class="small">총액 <b>₩826610원</b> · 결과로 설득 완료</div>
-    <div style="display:flex;gap:8px">
-      <a class="btn ghost" href="#scores">성적</a>
-      <a class="btn" href="#build">구성</a>
-    </div>
+    <p>지난 기말엔 영어 72, 역사 55,였던 내가 
+       이번엔 평균 <b>93.5</b>로 올렸음.  
+       이건 그냥 ‘운 좋았다’ 수준이 아님. 진짜 시간 갈아 넣었다고 😭</p>
   </div>
+
+  <div class="card">
+    <h2>💥 이번 업그레이드가 필요한 이유</h2>
+    <ul>
+      <li>💻 지금 컴퓨터, 인터넷 창 4개만 켜도 숨 넘어감.</li>
+      <li>🎮 게임용이라기보다,스트레스제조기임 게임은되는데 진짜 되기만함
+게임중에 게임멈춤,인터넷속도는 울집이 최고인데
+컴터가 속도를 못따라줌.</li>
+      <li>🔥 새 PC는 공부, 영상, GPT,디자인, 코딩, 게임까지 <b>매끄럽게 다 됨</b>.</li>
+      <li>🧠 동기 유지 장치. “결과→보상→다시 집중” 루프 완성.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🧩 목표 구성 (총 83만 원대)</h2>
+    <ul>
+      <li>🎮 그래픽카드: RTX 5060 — <b>₩438,900</b></li>
+      <li>🧠 CPU: Ryzen 5 7500F — <b>₩185,450</b></li>
+      <li>🧩 메인보드: GIGABYTE B650M K — <b>₩120,300</b></li>
+      <li>🔌 파워: 700W 80+ Bronze — <b>₩81,960</b></li>
+    </ul>
+    <p>아이폰 17 Pro (180만)보다 훨씬 싸고, 효율은 10배임.  
+    **“반값인데 인생 효율 두 배”** 딜이라고 보면 됨.</p>
+  </div>
+
+  <div class="card">
+    <h2>🙏 마지막으로, 진심</h2>
+    <p>아빠… 진짜 이번만큼은 **놀자고 사달라는 게 아님.**  
+    <b>열심히한 결과로, 나 자신한테 보상하고 싶어.</b>  
+    공부할 때도 쓰고, 놀 땐 더 효율적으로 즐기고 싶음.</p>
+
+    <p>솔직히 말해서, 나 이번에 평균93.5 맞고  
+    **학원 애들이랑 성적 얘기할 때 당당했음.**  
+    이 감정이 계속 유지됐으면 좋겠어....</p>
+
+    <p>그러니까 아빠… 🙏  
+    진짜 이번 한 번만 허락해줘.  
+    대신,다음 기말때도 <b>행동으로 또 보여줄게.</b></p>
+
+    <p style="text-align:right;font-weight:600;margin-top:16px;">
+    — 아빠 아들, 주완 드림 🫡
+    </p>
+  </div>
+
 </div>
-
-<script>
-// theme toggle
-const themeBtn=document.getElementById('themeBtn'), saved=localStorage.getItem('theme');
-if(saved) document.documentElement.setAttribute('data-theme',saved);
-themeBtn.onclick=()=>{const cur=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',cur);localStorage.setItem('theme',cur);};
-
-// share
-document.getElementById('shareBtn').onclick=async()=>{
-  try{
-    if(navigator.share){await navigator.share({title:document.title,text:'결과로 설득 · 업그레이드 제안',url:location.href});}
-    else{await navigator.clipboard.writeText(location.href);alert('링크 복사 완료!')}
-  }catch(e){}
-};
-
-// reveal on view
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.18});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// progress bars animate
-document.querySelectorAll('[data-bar]').forEach(el=>{requestAnimationFrame(()=>{el.style.width=el.dataset.bar+'%';});});
-
-// count-up numbers
-function countUp(el,end,dur=900){
-  const start=parseFloat(el.textContent)||0; const s=performance.now(); const dec=String(end).includes('.')?1:0;
-  function tick(t){const p=Math.min(1,(t-s)/dur); el.textContent=(start+(end-start)*p).toFixed(dec); if(p<1)requestAnimationFrame(tick);}
-  requestAnimationFrame(tick);
-}
-document.querySelectorAll('[data-count]').forEach(el=>countUp(el,parseFloat(el.dataset.count)));
-
-// ring progress
-function ring(el,val){
-  const r=50, circ=2*Math.PI*r;
-  const max=parseFloat(el.dataset.max||100);
-  const pct=Math.max(0,Math.min(1,val/max));
-  el.style.strokeDasharray=circ;
-  el.style.strokeDashoffset=circ*(1-pct);
-}
-document.querySelectorAll('.rProg').forEach(c=>{
-  const v=parseFloat(c.dataset.ring); const max=c.dataset.max?parseFloat(c.dataset.max):100;
-  // delay a bit for dramatic entrance
-  setTimeout(()=>ring(c,v),300);
-});
-</script>
 </body>
 </html>
-
-
